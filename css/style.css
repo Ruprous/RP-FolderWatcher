@@ -1,0 +1,73 @@
+/*Copyright (c) 2024 Ruprous*/
+
+body {
+	font-family: sans-serif;
+	padding: 16px;
+	background: #1e1e1e;
+	color: white;
+  }
+  
+  h1 {
+	font-size: 1.2rem;
+	margin-bottom: 1rem;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+  }
+  
+  #folder-path {
+	margin-top: 1rem;
+	font-size: 0.9rem;
+	word-break: break-word;
+  }
+  
+  #status {
+	display: none;
+	margin-top: 1rem;
+	font-size: 0.9rem;
+  }
+  
+  button {
+	all: unset;
+	display: inline-block;
+	padding: 6px 12px;
+	font-size: 1rem;
+	background-color: #2c2c2c;
+	color: white;
+	border: 1px solid #444;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-right: 8px;
+  }
+  
+  button:hover {
+	background-color: #3a3a3a;
+  }
+  
+  #log-container {
+	margin-top: 1rem;
+	max-height: 100px;
+	overflow-y: auto;
+	background: #222;
+	border: 1px solid #444;
+	padding: 0.5rem;
+	font-size: 0.85rem;
+	line-height: 1.4;
+  }
+  
+  #log-list div {
+	margin-bottom: 0.3rem;
+	word-break: break-word;
+  }
+
+  #clear-folder {
+	background-color: #aa0000;
+	border-color: #b92828;
+}
+
+  #clear-folder:hover {
+	background-color: #630000;
+}
+
+
+  

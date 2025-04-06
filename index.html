@@ -1,0 +1,36 @@
+<!--Copyright (c) 2024 Ruprous-->
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>RP Folder Watcher</title>
+    <link id="ppstyle" href="css/style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <h1>
+      <span style="font-size: 1rem;">RP Folder Watcher</span>      
+    </h1>
+    <div style="margin-bottom: 1rem;">
+      <button id="choose-folder">Choose Folder</button>
+      <button id="toggle-watch">Start Watching</button>
+      <button id="clear-folder">Clear Folder</button>
+    </div>
+    <div id="folder-path">※ No folder selected</div>
+    <div id="media-filters">
+      <label><input type="checkbox" id="filter-image" checked> Images</label>
+      <label><input type="checkbox" id="filter-video" checked> Videos</label>
+      <label><input type="checkbox" id="filter-audio" checked> Audio</label>
+      <label><input type="checkbox" id="filter-graphic" checked> Graphics</label>
+    </div>
+    
+    <div id="status">Watching: OFF</div>
+
+    <div id="log-container">
+      <div id="log-list"></div>
+    </div>
+
+    <script src="./lib/CSInterface.js"></script>
+    <script src="./lib/jquery-1.9.1.js"></script>
+    <script src="./ext.js"></script>
+  </body>
+</html>

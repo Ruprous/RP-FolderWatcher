@@ -41,8 +41,8 @@ RPFolderWatcher/
 ├── ext.js
 ├── importedFilesMap.json
 ├── projectFolderMap.json
-├── LICENSE_jp_ja.txt
-├── LICENSE_us_en.txt
+├── LICENSE.md
+├── LICENSE_us_en.md
 └── README.md
 ```
 

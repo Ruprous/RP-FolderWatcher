@@ -66,15 +66,24 @@ document.addEventListener("DOMContentLoaded", () => {
       let attempts = 0;
       const maxAttempts = 10;
       const checkInterval = 500;
+      let stableCount = 0;
   
       const checkStability = () => {
         try {
           const size1 = fs.statSync(normalized).size;
-  
+          const mtime1 = fs.statSync(normalized).mtimeMs;
+
           setTimeout(() => {
             const size2 = fs.statSync(normalized).size;
-  
-            if (size1 === size2) {
+            const mtime2 = fs.statSync(normalized).mtimeMs;
+
+            if (size1 === size2 && mtime1 === mtime2) {
+              stableCount++;
+            } else {
+              stableCount = 0;
+            }
+
+            if (stableCount >= 3) { // 3回連続で安定
               log(`📁 File stable: ${filename}`);
   
               // インポート実行
@@ -83,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   `importFileFromPathWithBin("${normalized}", "${mediaType}")`,
                   (result) => {
                     if (result === "true") {
+                      // 成功時のみ履歴に記録
                       if (!isFileAlreadyImported(projectPathKey, normalized)) {
                         markFileAsImported(projectPathKey, normalized);
                         setTimeout(notifyBatchImportedFiles, 300);
@@ -91,18 +101,16 @@ document.addEventListener("DOMContentLoaded", () => {
                       }
                     } else {
                       log(`❌ Import failed, not recorded: ${filename}`);
+                      // 失敗時は履歴に記録しない
                     }
                   }
                 );
               }, 300);
-            } else {
+            } else if (attempts < maxAttempts) {
               attempts++;
-              if (attempts < maxAttempts) {
-                log(`⏳ File still writing: ${filename} (retry ${attempts})`);
-                checkStability();
-              } else {
-                log(`❌ Gave up waiting: ${filename}`);
-              }
+              checkStability();
+            } else {
+              log(`❌ Gave up waiting: ${filename}`);
             }
           }, checkInterval);
         } catch (e) {
